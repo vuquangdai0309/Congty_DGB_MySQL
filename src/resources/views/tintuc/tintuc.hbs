@@ -1,0 +1,120 @@
+{{> header}}
+<div class="main">
+    <section class="breadcrumb-section set-bg" data-setbg="/img/logo.png"
+        style="background-image: url(/img/banner8_small.png)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Tin tức</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Trang chủ</a>
+                            <span>Tin tức</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="blog__sidebar ">
+                        <div class="blog__sidebar__item" style="margin: 15px 15px;">
+                            <h4>Tin Tức Mới Nhất</h4>
+                            <div class="blog__sidebar__recent">
+                                {{#each latestPosts}}
+                                <a href="/bai-viet/{{this.slug}}" class="blog__sidebar__recent__item image-hover "
+                                    style="">
+                                    <div class="blog__sidebar__recent__item__pic">
+                                        <img src="/{{this.image}}" alt="" style="width: 100px;">
+                                    </div>
+                                    <div class="blog__sidebar__recent__item__text">
+                                        <p style="color: rgb(0, 0, 0);"><strong>{{this.title}}</strong></p>
+                                        <p class="fa fa-calendar-o"> {{this.createdAt}}</p>
+                                    </div>
+                                </a>
+                                {{/each}}
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="height:30px ">
+                                <div class="row">
+                                    <div class="col-md-4"><strong>Theo dõi:</strong></div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-9 "><button class="icon-small"><i
+                                                        class="bi bi-hand-thumbs-up-fill"></i> Like</button></div>
+                                            {{!-- <div class="col-md-6 icon-small"><span class="">Chia sẻ</span></div>
+                                            --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 ">
+                    <div class="row" style="padding-top: 15px;">
+                        {{#each tintuc}}
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="blog__item">
+                                <div class="blog__item__pic image-hover ">
+                                    <img src="/{{this.image}}" alt="">
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul style="padding-left: 0px;">
+                                        <li><i class="fa fa-calendar-o"></i> {{this.createdAt}}</li>
+                                    </ul>
+                                    <h5 class="image-hover"><a href="/bai-viet/{{this.slug}}"
+                                            style="color:rgb(0, 0, 0) ;">{{this.title}}</a></h5>
+                                    <p>{{{truncateDescription this.content}}}</p>
+                                    <button class="blog__btn image-hover"><a href="/bai-viet/{{this.slug}}"
+                                            style="color: rgb(117, 117, 117);">Xem chi tiết</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="col-lg-12 center">
+                            <div class=" ">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        {{#if pagination.prev}}
+                                        <li class="page-item">
+                                            <a class="page-link" href="/tin-tuc?page={{pagination.prev}}"
+                                                aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        {{/if}}
+
+                                        {{#each pagination.pages}}
+                                        <li class="page-item {{#if this.active}}active{{/if}}">
+                                            <a class="page-link"
+                                                href="/tin-tuc?page={{this.number}}">{{this.number}}</a>
+                                        </li>
+                                        {{/each}}
+
+                                        {{#if pagination.next}}
+                                        <li class="page-item">
+                                            <a class="page-link" href="/tin-tuc?page={{pagination.next}}"
+                                                aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        {{/if}}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
